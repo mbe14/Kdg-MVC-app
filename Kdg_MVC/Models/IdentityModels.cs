@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Kdg_MVC.MySQLConfig;
 
 namespace Kdg_MVC.Models
 {
@@ -17,11 +18,15 @@ namespace Kdg_MVC.Models
             return userIdentity;
         }
     }
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer(new MySqlInitializer());
+        }
+
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+          : base("DefaultConnection")
         {
         }
 
