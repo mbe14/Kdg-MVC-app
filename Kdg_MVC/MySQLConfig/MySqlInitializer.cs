@@ -28,6 +28,8 @@ namespace Kdg_MVC.MySQLConfig
                 {
                     context.Database.Delete();
                     context.Database.Create();
+
+                    //Add code to rebuild the database structure...
                 }
             }
         }
