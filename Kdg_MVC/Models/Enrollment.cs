@@ -17,7 +17,6 @@ namespace Kdg_MVC.Models
         public int GroupID { get; set; }
         public int ChildID { get; set; }
         public Grade? Grade { get; set; }
-
         public virtual Group Group { get; set; }
         public virtual Children Children { get; set; }
 

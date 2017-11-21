@@ -11,17 +11,17 @@ using Kdg_MVC.Models;
 
 namespace Kdg_MVC.Controllers
 {
-    public class ChildController : Controller
+    public class ChildrenController : Controller
     {
         private AppContext db = new AppContext();
 
-        // GET: Child
+        // GET: Children
         public ActionResult Index()
         {
             return View(db.Children.ToList());
         }
 
-        // GET: Child/Details/5
+        // GET: Children/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,30 +36,39 @@ namespace Kdg_MVC.Controllers
             return View(children);
         }
 
-        // GET: Child/Create
+        // GET: Children/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Child/Create
+        // POST: Children/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CID,FirstName,LastName,CNP,Address,City,MothersName,FathersName,ContactEmail,EnrollmentDate")] Children children)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Children.Add(children);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {
+                    db.Children.Add(children);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
             return View(children);
         }
 
-        // GET: Child/Edit/5
+        // GET: Children/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,28 +83,45 @@ namespace Kdg_MVC.Controllers
             return View(children);
         }
 
-        // POST: Child/Edit/5
+        // POST: Children/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CID,FirstName,LastName,CNP,Address,City,MothersName,FathersName,ContactEmail,EnrollmentDate")] Children children)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(children).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(children);
-        }
-
-        // GET: Child/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult EditPost(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var childToUpdate = db.Children.Find(id);
+            if (TryUpdateModel(childToUpdate, "", new string[] { "FirstName", "LastName", "CNP", "Address", "City", "MothersName", "FathersName", "ContactEmail", "EnrollmentDate" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(childToUpdate);
+        }
+
+        // GET: Children/Delete/5
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Children children = db.Children.Find(id);
             if (children == null)
@@ -105,14 +131,22 @@ namespace Kdg_MVC.Controllers
             return View(children);
         }
 
-        // POST: Child/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Children/Delete/5
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Children children = db.Children.Find(id);
-            db.Children.Remove(children);
-            db.SaveChanges();
+            try
+            {
+                Children children = db.Children.Find(id);
+                db.Children.Remove(children);
+                db.SaveChanges();                
+            }
+            catch (DataException/* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
             return RedirectToAction("Index");
         }
 
