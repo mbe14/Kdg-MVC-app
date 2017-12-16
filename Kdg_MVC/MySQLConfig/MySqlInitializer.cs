@@ -12,10 +12,16 @@ namespace Kdg_MVC.MySQLConfig
     {
         public void InitializeDatabase(ApplicationDbContext context)
         {
+             
+
             if (!context.Database.Exists())
             {
                 // if database did not exist before - create it
                 context.Database.Create();
+
+                context.Database.ExecuteSqlCommand("CREATE TABLE `Children` (`CID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `CNP` varchar(13) NOT NULL UNIQUE, `Address` varchar(50) NOT NULL, `City` varchar(50) NOT NULL, `MothersName` varchar(100) NOT NULL, `FathersName` varchar(100) NOT NULL, `ContactEMail` varchar(50) NOT NULL, `EnrollmentDate` DATE NOT NULL, PRIMARY KEY(`cid`));");
+
+                context.Database.ExecuteSqlCommand("CREATE TABLE `Group` (`GroupID` int(4) NOT NULL AUTO_INCREMENT, `GroupName` varchar(50) NOT NULL, `MonthlyFee` DECIMAL(10, 2) NOT NULL, PRIMARY KEY(`GroupID`));");
             }
             else
             {
@@ -27,9 +33,7 @@ namespace Kdg_MVC.MySQLConfig
                 if (migrationHistoryTableExists.FirstOrDefault() == 0)
                 {
                     context.Database.Delete();
-                    context.Database.Create();
-
-                    //Add code to rebuild the database structure...
+                    context.Database.Create();                   
                 }
             }
         }

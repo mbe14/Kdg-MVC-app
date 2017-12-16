@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kdg_MVC.Models
 {
     public class Group
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int GroupID { get; set; }
         public string GroupName { get; set; }
         public decimal MonthlyFree { get; set; }
