@@ -19,7 +19,9 @@ namespace Kdg_MVC.Controllers
         public ActionResult Index()
         {
             var enrollments = db.Enrollments.Include(e => e.Groups);
+            enrollments = db.Enrollments.Include(i => i.Instructors);
             return View(enrollments.ToList());
+            
         }
 
         // GET: Enrollment/Details/5
@@ -41,6 +43,16 @@ namespace Kdg_MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName");
+            ViewBag.InstructorID = new SelectList((from i in db.Instructors
+                                                   select new
+                                                   {
+                                                       InstructorID = i.InstructorID,
+                                                       FullName = i.FirstName + " " + i.LastName
+                                                   }),
+                "InstructorID",
+                "FullName",
+                null);
+                
             return View();
         }
 
@@ -59,6 +71,8 @@ namespace Kdg_MVC.Controllers
             }
 
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
+            ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
+            
             return View(enrollment);
         }
 
@@ -75,6 +89,7 @@ namespace Kdg_MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
+            ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
             return View(enrollment);
         }
 
@@ -92,6 +107,7 @@ namespace Kdg_MVC.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
+            ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
             return View(enrollment);
         }
 
