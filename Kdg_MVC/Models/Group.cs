@@ -10,10 +10,9 @@ namespace Kdg_MVC.Models
 {
     public class Group
     {
-        [Key]
         public int GroupID { get; set; }
         public string GroupName { get; set; }
-        public decimal MonthlyFree { get; set; }
+        public Decimal MonthlyFee { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }

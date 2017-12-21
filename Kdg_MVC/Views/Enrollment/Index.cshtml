@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Kdg_MVC.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Groups.GroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstructorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grades)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Groups.GroupName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstructorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grades)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentID })
+        </td>
+    </tr>
+}
+
+</table>

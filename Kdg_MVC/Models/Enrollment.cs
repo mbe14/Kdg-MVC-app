@@ -15,9 +15,10 @@ namespace Kdg_MVC.Models
         public int EnrollmentID { get; set; }
         public int InstructorID { get; set; }
         public int GroupID { get; set; }
-        public int ChildID { get; set; }
-        public Grade? Grade { get; set; }
-        public virtual Group Group { get; set; }
+        public int CID { get; set; }
+        public Grade? Grades { get; set; }
+        
+        public virtual Group Groups { get; set; }
         public virtual Children Children { get; set; }
 
 

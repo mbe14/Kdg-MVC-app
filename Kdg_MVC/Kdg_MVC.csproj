@@ -179,6 +179,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChildrenController.cs" />
+    <Compile Include="Controllers\EnrollmentController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataAccessLayer\AppContext.cs" />
@@ -269,6 +271,16 @@
     <Content Include="Views\Children\Details.cshtml" />
     <Content Include="Views\Children\Edit.cshtml" />
     <Content Include="Views\Children\Index.cshtml" />
+    <Content Include="Views\Enrollment\Create.cshtml" />
+    <Content Include="Views\Enrollment\Delete.cshtml" />
+    <Content Include="Views\Enrollment\Details.cshtml" />
+    <Content Include="Views\Enrollment\Edit.cshtml" />
+    <Content Include="Views\Enrollment\Index.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
