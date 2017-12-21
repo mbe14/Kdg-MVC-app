@@ -49,7 +49,7 @@ namespace Kdg_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EnrollmentID,InstructorID,GroupID,ChildID,Grade")] Enrollment enrollment)
+        public ActionResult Create([Bind(Include = "EnrollmentID,InstructorID,GroupID,CID,Grades")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace Kdg_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EnrollmentID,InstructorID,GroupID,ChildID,Grade")] Enrollment enrollment)
+        public ActionResult Edit([Bind(Include = "EnrollmentID,InstructorID,GroupID,CID,Grades")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
             {
