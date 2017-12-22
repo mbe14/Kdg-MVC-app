@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Kdg_MVC.ViewModels.EnrollmentDateGroup>
+
+@{
+    ViewBag.Title = "Children Body Statistics";
+}
+<h2>Children Body Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Enrollment Date
+        </th>
+        <th>
+            Children
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @item.ChildrenCount
+            </td>
+        </tr>
+    }
+</table>

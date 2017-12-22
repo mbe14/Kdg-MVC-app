@@ -16,9 +16,32 @@ namespace Kdg_MVC.Controllers
         private AppContext db = new AppContext();
 
         // GET: Children
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string searchString)
         {
-            return View(db.Children.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            var children = from c in db.Children
+                           select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                children = children.Where(c => c.LastName.Contains(searchString) || c.FirstName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    children = children.OrderByDescending(c => c.LastName);
+                    break;
+                case "Date":
+                    children = children.OrderBy(c => c.EnrollmentDate);
+                    break;
+                case "date_desc":
+                    children = children.OrderByDescending(c => c.EnrollmentDate);
+                    break;
+                default:
+                    children = children.OrderBy(c => c.LastName);
+                    break;
+            }
+            return View(children.ToList());
         }
 
         // GET: Children/Details/5

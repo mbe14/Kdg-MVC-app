@@ -20,8 +20,9 @@ namespace Kdg_MVC.Controllers
         {
             var enrollments = db.Enrollments.Include(e => e.Groups);
             enrollments = db.Enrollments.Include(i => i.Instructors);
+            enrollments = db.Enrollments.Include(c => c.Children);
             return View(enrollments.ToList());
-            
+
         }
 
         // GET: Enrollment/Details/5
@@ -52,7 +53,16 @@ namespace Kdg_MVC.Controllers
                 "InstructorID",
                 "FullName",
                 null);
-                
+            ViewBag.CID = new SelectList((from c in db.Children
+                                          select new
+                                          {
+                                              CID = c.CID,
+                                              FullName = c.FirstName + " " + c.LastName
+                                          }),
+                                              "CID",
+                                              "FullName",
+                                              null);
+
             return View();
         }
 
@@ -72,7 +82,8 @@ namespace Kdg_MVC.Controllers
 
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
             ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
-            
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName", enrollment.CID);
+
             return View(enrollment);
         }
 
@@ -90,6 +101,7 @@ namespace Kdg_MVC.Controllers
             }
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
             ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName", enrollment.CID);
             return View(enrollment);
         }
 
@@ -108,6 +120,7 @@ namespace Kdg_MVC.Controllers
             }
             ViewBag.GroupID = new SelectList(db.Groups, "GroupID", "GroupName", enrollment.GroupID);
             ViewBag.InstructorID = new SelectList(db.Instructors, "InstructorID", "FullName", enrollment.InstructorID);
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName", enrollment.CID);
             return View(enrollment);
         }
 
