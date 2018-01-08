@@ -9,43 +9,70 @@
 <p>
     @Html.ActionLink("Add New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Groups.GroupName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InstructorID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Grades)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Groups.GroupName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Instructors.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Children.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Grades)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentID })
-        </td>
-    </tr>
-}
+<table id="enrollments">
+    <thead>
+        <tr>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Groups.GroupName)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.InstructorID)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.CID)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Grades)</strong>
+            </th>
+            <th data-filterable="false"><strong>Actions</strong></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Groups.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructors.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grades)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EnrollmentID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentID })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script>
+    $(document).ready(function () {
+        $("#enrollments").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: {
+                extra: false,
+                mode: "row",
+                operators: {
+                    string: { contains: "Contains" }
+                }
+            },
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

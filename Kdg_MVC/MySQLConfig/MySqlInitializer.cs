@@ -11,7 +11,51 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Kdg_MVC.MySQLConfig
 {
     public class MySqlInitializer : IDatabaseInitializer<ApplicationDbContext>
-    {      
+    {
+
+        Kdg_MVC.DataAccessLayer.AppContext ctx = new DataAccessLayer.AppContext();
+        private void Seed()
+        {
+            var chldren = new List<Children>
+            {
+                new Children
+                {
+                    FirstName = "Jane", LastName = "Austen", CNP = "2021001125899", Address = "Some Address", City = "Some City", MothersName = "Amanda", FathersName = "John", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017") // Month / Day / Year
+                },
+                new Children
+                {
+                    FirstName = "Mike", LastName = "Jensen", CNP = "1030401138412", Address = "Some Address", City = "Some City", MothersName = "Lucy", FathersName = "Jack", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017")
+                },
+                new Children
+                {
+                    FirstName = "James", LastName = "Cameron", CNP = "1021201152854", Address = "Some Address", City = "Some City", MothersName = "Stacey", FathersName = "Gunther", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017")
+                }
+            };
+
+            chldren.ForEach(s => ctx.Children.Add(s));
+
+            var instrcts = new List<Instructor>
+            {
+                new Instructor
+                {
+                    FirstName = "Mike", LastName="Johnson", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                },
+                new Instructor
+                {
+                    FirstName = "Sam", LastName="Smith", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                },
+                 new Instructor
+                {
+                    FirstName = "Lucy", LastName="Liu", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                }
+            };
+
+            instrcts.ForEach(s => ctx.Instructors.Add(s));
+
+            ctx.SaveChanges();
+
+        }
+
         public void InitializeDatabase(ApplicationDbContext context)
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
@@ -41,7 +85,7 @@ namespace Kdg_MVC.MySQLConfig
                 context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);");
 
                 context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk1` FOREIGN KEY (`InstructorID`) REFERENCES `Instructor`(`InstructorID`);");
-                
+
                 // Creating First Admin role and a default admin user
 
                 if (!roleManager.RoleExists("Admin"))
@@ -100,6 +144,9 @@ namespace Kdg_MVC.MySQLConfig
                     context.Database.Create();
                 }
             }
+
+            //Start Seeding the Database;
+            Seed();
         }
     }
 }
