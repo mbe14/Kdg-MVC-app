@@ -11,6 +11,7 @@ using Kdg_MVC.Models;
 
 namespace Kdg_MVC.Controllers
 {
+    [Authorize]
     public class InstructorController : Controller
     {
         private AppContext db = new AppContext();

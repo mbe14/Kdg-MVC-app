@@ -11,7 +11,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Kdg_MVC.MySQLConfig
 {
     public class MySqlInitializer : IDatabaseInitializer<ApplicationDbContext>
-    {
+    {      
         public void InitializeDatabase(ApplicationDbContext context)
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
@@ -41,7 +41,6 @@ namespace Kdg_MVC.MySQLConfig
                 context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);");
 
                 context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk1` FOREIGN KEY (`InstructorID`) REFERENCES `Instructor`(`InstructorID`);");
-
                 
                 // Creating First Admin role and a default admin user
 
