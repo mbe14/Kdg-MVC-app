@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Kdg_MVC.Models.DailyAttendance>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Daily Attendance List</h2>
+
+<p>
+    @Html.ActionLink("Add Attendance", "Create")
+</p>
+<table id="dailya">
+    <thead>
+        <tr>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Att_Date)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.CID)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.isPresent)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Notes)</strong>
+            </th>
+            <th data-filterable="false">
+                <strong>Actions</strong>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Att_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPresent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AttendanceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AttendanceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AttendanceID })
+            </td>
+        </tr>
+    }
+
+</table>
+<script>
+    $(document).ready(function () {
+        $("#dailya").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: {
+                extra: false,
+                mode: "row",
+                operators: {
+                    string: { contains: "Contains" }
+                }
+            },
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

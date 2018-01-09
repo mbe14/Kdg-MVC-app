@@ -1,0 +1,50 @@
+﻿@model Kdg_MVC.Models.DailyAttendance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DailyAttendance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Att_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Att_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CID)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.isPresent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isPresent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AttendanceID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

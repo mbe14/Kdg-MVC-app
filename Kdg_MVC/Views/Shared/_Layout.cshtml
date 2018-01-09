@@ -7,6 +7,20 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    @Styles.Render("~/Content/kendo/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+
+    <link rel="stylesheet" href="~/Content/kendo/kendo.common.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.mobile.all.min.css">
+
+    <script src="~/Scripts/kendo/jquery-1.12.3.min.js"></script>
+    <script src="~/Scripts/kendo/angular.min.js"></script>
+    <script src="~/Scripts/kendo/jszip.min.js"></script>
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#ffffff; color:#463265">
@@ -31,6 +45,7 @@
                         <div class="floating-box">@Html.ActionLink("Instructors", "Index", "Instructor", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
                         <div class="floating-box">@Html.ActionLink("Groups", "Index", "Group", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
                         <div class="floating-box">@Html.ActionLink("Statistics", "Statistics", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
+                        <div class="floating-box">@Html.ActionLink("Dashboard", "Index", "Users", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn"})</div>
                     }
                     <div class="floating-box">@Html.ActionLink("Contact", "Contact", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
 
@@ -49,8 +64,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
