@@ -19,6 +19,7 @@ namespace Kdg_MVC.DataAccessLayer
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<DailyAttendance> DailyAttendances { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

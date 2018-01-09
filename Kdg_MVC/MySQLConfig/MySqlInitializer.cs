@@ -52,6 +52,29 @@ namespace Kdg_MVC.MySQLConfig
 
             instrcts.ForEach(s => ctx.Instructors.Add(s));
 
+            var grps = new List<Group>
+            {
+                new Group
+                {
+                    GroupName = "Grupa Mica", MonthlyFee=900M
+                },
+                new Group
+                {
+                    GroupName = "Grupa Mare", MonthlyFee=950M
+                },
+                new Group
+                {
+                    GroupName = "Licuricii", MonthlyFee=925M
+                },
+                new Group
+                {
+                    GroupName = "Grupa Mijlocie", MonthlyFee=915M
+                }
+               
+            };
+
+            grps.ForEach(s => ctx.Groups.Add(s));
+
             ctx.SaveChanges();
 
         }
@@ -74,7 +97,7 @@ namespace Kdg_MVC.MySQLConfig
 
                 context.Database.ExecuteSqlCommand("CREATE TABLE `Instructor` (`InstructorID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `StartDate` DATE NOT NULL, `EndDate` DATE, `PayRate` DECIMAL(10,2) NOT NULL, PRIMARY KEY (`InstructorID`));");
 
-                context.Database.ExecuteSqlCommand("CREATE TABLE `DailyAttendance` (`AttendanceID` int(4) NOT NULL AUTO_INCREMENT, `Date` DATE NOT NULL, `CID` int(4) NOT NULL, `InstructorID` int(4) NOT NULL, `isPresent` bool NOT NULL, `Notes` varchar(200) NOT NULL, PRIMARY KEY (`AttendanceID`));");
+                context.Database.ExecuteSqlCommand("CREATE TABLE `DailyAttendance` (`AttendanceID` int(4) NOT NULL AUTO_INCREMENT, `Att_Date` DATE NOT NULL, `CID` int(4) NOT NULL, `isPresent` bool NOT NULL, `Notes` varchar(200), PRIMARY KEY (`AttendanceID`));");
 
                 context.Database.ExecuteSqlCommand("ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk0` FOREIGN KEY (`GroupID`) REFERENCES `Group`(`GroupID`);");
 
@@ -83,9 +106,7 @@ namespace Kdg_MVC.MySQLConfig
                 context.Database.ExecuteSqlCommand("ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk2` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);");
 
                 context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);");
-
-                context.Database.ExecuteSqlCommand("ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk1` FOREIGN KEY (`InstructorID`) REFERENCES `Instructor`(`InstructorID`);");
-
+               
                 // Creating First Admin role and a default admin user
 
                 if (!roleManager.RoleExists("Admin"))

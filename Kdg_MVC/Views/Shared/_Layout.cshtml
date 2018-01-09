@@ -45,6 +45,7 @@
                         <div class="floating-box">@Html.ActionLink("Instructors", "Index", "Instructor", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
                         <div class="floating-box">@Html.ActionLink("Groups", "Index", "Group", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
                         <div class="floating-box">@Html.ActionLink("Statistics", "Statistics", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
+                        <div class="floating-box">@Html.ActionLink("Dashboard", "Index", "Users", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn"})</div>
                     }
                     <div class="floating-box">@Html.ActionLink("Contact", "Contact", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
 
@@ -64,7 +65,7 @@
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
