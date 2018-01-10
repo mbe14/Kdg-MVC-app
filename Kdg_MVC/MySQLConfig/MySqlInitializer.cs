@@ -21,7 +21,7 @@ namespace Kdg_MVC.MySQLConfig
                 context.Database.Create();                
                 
                 //Create Data Tables
-                DatabaseRepository.CreateDataTables();
+                DatabaseRepository.CreateDataTables(context);
 
                 //Create users and roles.
                 DatabaseRepository.CreateUsersAndRoles(context);
@@ -40,7 +40,7 @@ namespace Kdg_MVC.MySQLConfig
                 {
                     context.Database.Delete();
                     context.Database.Create();                   
-                    DatabaseRepository.CreateDataTables();
+                    DatabaseRepository.CreateDataTables(context);
                     DatabaseRepository.CreateUsersAndRoles(context);
                     SeedData.Seed();
                 }

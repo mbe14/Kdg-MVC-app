@@ -13,7 +13,7 @@ namespace Kdg_MVC.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date (MM/DD/YYYY)")]
+        [Display(Name = "Date")]
         public DateTime Att_Date { get; set; }       
        
         [Display(Name = "Child's Name")]

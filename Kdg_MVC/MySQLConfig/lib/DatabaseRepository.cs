@@ -28,9 +28,8 @@ namespace Kdg_MVC.MySQLConfig.lib
 
         private const string _Add_DailyAttendance_fk0 = @"ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);";
 
-        public static void CreateDataTables()
-        {
-            ApplicationDbContext context = new ApplicationDbContext();
+        public static void CreateDataTables(ApplicationDbContext context)
+        {           
             context.Database.ExecuteSqlCommand(_CreateTbChildren);
             context.Database.ExecuteSqlCommand(_CreateTbEnrollment);
             context.Database.ExecuteSqlCommand(_CreateTbGroup);
