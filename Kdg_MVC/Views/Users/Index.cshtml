@@ -7,9 +7,10 @@
 
 @if (ViewBag.displayMenu == "Yes")
 {
-    <h1>Welcome Admin. This is the main dashboard.</h1>
+    <h2>Welcome Admin. This is the main dashboard.</h2>
     <h3>
         <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+        <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
     </h3>
 }
 else

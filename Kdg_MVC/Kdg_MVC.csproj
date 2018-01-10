@@ -199,6 +199,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="MySQLConfig\lib\DatabaseRepository.cs" />
+    <Compile Include="MySQLConfig\lib\SeedData.cs" />
     <Compile Include="MySQLConfig\MySqlConfiguration.cs" />
     <Compile Include="MySQLConfig\MySqlHistoryContext.cs" />
     <Compile Include="MySQLConfig\MySqlInitializer.cs" />
