@@ -22,11 +22,26 @@ namespace Kdg_MVC.Controllers
 
                 ViewBag.displayMenu = "No";
 
-                if (isAdminUser())
+                if (RoleOfUser() == "Admin")
                 {
-                    ViewBag.displayMenu = "Yes";
+                    ViewBag.displayMenu = "Admin";
+                    return View();
                 }
-                return View();
+                else if (RoleOfUser() == "Staff")
+                {
+                    ViewBag.displayMenu = "Staff";
+                    return View();
+                }
+                else if (RoleOfUser() == "Manager")
+                {
+                    ViewBag.displayMenu = "Manager";
+                    return View();
+                }
+                else if (RoleOfUser() == "Parent")
+                {
+                    ViewBag.displayMenu = "Parent";
+                    return View();
+                }               
             }
             else
             {
@@ -35,7 +50,7 @@ namespace Kdg_MVC.Controllers
             return View();
         }
 
-        public Boolean isAdminUser()
+        public string RoleOfUser()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -43,16 +58,15 @@ namespace Kdg_MVC.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+
+                return s[0].ToString();                
             }
-            return false;
+
+            else
+            {
+                return "Not Auth";
+            }
+           
         }
     }
 }

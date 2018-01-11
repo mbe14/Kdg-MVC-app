@@ -5,15 +5,38 @@
 
 
 
-@if (ViewBag.displayMenu == "Yes")
+@if (ViewBag.displayMenu == "Admin")
 {
     <h2>Welcome Admin. This is the main dashboard.</h2>
     <h3>
         <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
         <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
+        <li>@Html.ActionLink("Add new super user", "Register", "Account")</li>
     </h3>
+}
+
+else if (ViewBag.displayMenu == "Staff")
+{
+    <h2>Welcome Staff. This is the main dashboard.</h2>
+    <h3>
+        <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
+    </h3>
+}
+
+else if (ViewBag.displayMenu == "Manager")
+{
+    <h2>Welcome Manager. This is the main dashboard.</h2>
+    <h3>
+        <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
+        <li>@Html.ActionLink("Add new super user", "Register", "Account")</li>
+    </h3>
+}
+
+else if (ViewBag.displayMenu == "Parent")
+{
+    <h2>Welcome Parent. This is the main dashboard.</h2>
 }
 else
 {
-    <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
+    <h2>  Welcome <strong>@ViewBag.Name</strong>. This is the main dashboard.</h2>
 }

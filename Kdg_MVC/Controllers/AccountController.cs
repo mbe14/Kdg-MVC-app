@@ -141,9 +141,21 @@ namespace Kdg_MVC.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var superRoles = new string[] { "Admin", "Staff" };
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !superRoles.Contains(u.Name))
+            var superRoles = new string[] { "Admin", "Staff", "Manager" };
+
+            if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+            {
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                          .ToList(), "Name", "Name");
+            }
+            
+            else
+            {
+                ViewBag.Name = new SelectList(context.Roles.Where(u => !superRoles.Contains(u.Name))
                                             .ToList(), "Name", "Name");
+            }
+            
+            
             return View();
         }
 
