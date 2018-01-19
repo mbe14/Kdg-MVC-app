@@ -11,108 +11,107 @@ using Kdg_MVC.Models;
 
 namespace Kdg_MVC.Controllers
 {
-    [Authorize]
-    public class GroupController : Controller
+    public class FeeTypesController : Controller
     {
         private AppContext db = new AppContext();
 
-        // GET: Group
+        // GET: FeeTypes
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            return View(db.FeeTypes.ToList());
         }
 
-        // GET: Group/Details/5
+        // GET: FeeTypes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            FeeTypes feeTypes = db.FeeTypes.Find(id);
+            if (feeTypes == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(feeTypes);
         }
 
-        // GET: Group/Create
+        // GET: FeeTypes/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Group/Create
+        // POST: FeeTypes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupName")] Group group)
+        public ActionResult Create([Bind(Include = "FeeID,FeeType")] FeeTypes feeTypes)
         {
             if (ModelState.IsValid)
             {
-                db.Groups.Add(group);
+                db.FeeTypes.Add(feeTypes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(group);
+            return View(feeTypes);
         }
 
-        // GET: Group/Edit/5
+        // GET: FeeTypes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            FeeTypes feeTypes = db.FeeTypes.Find(id);
+            if (feeTypes == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(feeTypes);
         }
 
-        // POST: Group/Edit/5
+        // POST: FeeTypes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupID,GroupName")] Group group)
+        public ActionResult Edit([Bind(Include = "FeeID,FeeType")] FeeTypes feeTypes)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
+                db.Entry(feeTypes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(group);
+            return View(feeTypes);
         }
 
-        // GET: Group/Delete/5
+        // GET: FeeTypes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            FeeTypes feeTypes = db.FeeTypes.Find(id);
+            if (feeTypes == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(feeTypes);
         }
 
-        // POST: Group/Delete/5
+        // POST: FeeTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
+            FeeTypes feeTypes = db.FeeTypes.Find(id);
+            db.FeeTypes.Remove(feeTypes);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -31,13 +31,7 @@ namespace Kdg_MVC.Controllers
             {
                 case "name_desc":
                     children = children.OrderByDescending(c => c.LastName);
-                    break;
-                case "Date":
-                    children = children.OrderBy(c => c.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    children = children.OrderByDescending(c => c.EnrollmentDate);
-                    break;
+                    break;               
                 default:
                     children = children.OrderBy(c => c.LastName);
                     break;
@@ -71,7 +65,7 @@ namespace Kdg_MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CID,FirstName,LastName,CNP,Address,City,MothersName,FathersName,ContactEmail,EnrollmentDate")] Children children)
+        public ActionResult Create([Bind(Include = "CID,FirstName,LastName,CNP,Address,City,MothersName,FathersName,ContactEmail")] Children children)
         {
             try
             {
@@ -119,7 +113,7 @@ namespace Kdg_MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var childToUpdate = db.Children.Find(id);
-            if (TryUpdateModel(childToUpdate, "", new string[] { "FirstName", "LastName", "CNP", "Address", "City", "MothersName", "FathersName", "ContactEmail", "EnrollmentDate" }))
+            if (TryUpdateModel(childToUpdate, "", new string[] { "FirstName", "LastName", "CNP", "Address", "City", "MothersName", "FathersName", "ContactEmail"}))
             {
                 try
                 {

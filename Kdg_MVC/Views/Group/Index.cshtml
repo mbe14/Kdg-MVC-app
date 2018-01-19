@@ -13,10 +13,7 @@
     <tr>
         <th>
             <strong>@Html.DisplayNameFor(model => model.GroupName)</strong>
-        </th>
-        <th>
-            <strong>@Html.DisplayNameFor(model => model.MonthlyFee)</strong>
-        </th>      
+        </th>           
         <th data-filterable="false"><strong>Actions</strong></th>
     </tr>
 
@@ -26,9 +23,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GroupName)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MonthlyFee)
-            </td>
+                      
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.GroupID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.GroupID }) |

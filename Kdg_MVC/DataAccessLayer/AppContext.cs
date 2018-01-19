@@ -26,5 +26,9 @@ namespace Kdg_MVC.DataAccessLayer
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        public System.Data.Entity.DbSet<Kdg_MVC.Models.FeeTypes> FeeTypes { get; set; }
+
+        public System.Data.Entity.DbSet<Kdg_MVC.Models.Payments> Payments { get; set; }
+
     }
 }

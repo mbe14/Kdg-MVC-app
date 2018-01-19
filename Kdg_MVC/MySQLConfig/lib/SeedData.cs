@@ -10,24 +10,32 @@ namespace Kdg_MVC.MySQLConfig.lib
 {
     public class SeedData
     {
-        public const string _CreateTbChildren = @"CREATE TABLE `Children` (`CID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `CNP` varchar(13) NOT NULL UNIQUE, `Address` varchar(50) NOT NULL, `City` varchar(50) NOT NULL, `MothersName` varchar(100) NOT NULL, `FathersName` varchar(100) NOT NULL, `ContactEMail` varchar(50) NOT NULL, `EnrollmentDate` DATE NOT NULL, PRIMARY KEY(`cid`));";
+        public const string _CreateTbChildren = @"CREATE TABLE `Children` (`CID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `CNP` varchar(13) NOT NULL UNIQUE, `Address` varchar(50) NOT NULL, `City` varchar(50) NOT NULL, `MothersName` varchar(100) NOT NULL, `FathersName` varchar(100) NOT NULL, `ContactEMail` varchar(50) NOT NULL, PRIMARY KEY(`CID`));";
 
-        public const string _CreateTbEnrollment = @"CREATE TABLE `Enrollment` (`EnrollmentID` int(4) NOT NULL AUTO_INCREMENT, `GroupID` int(4) NOT NULL, `InstructorID` int(4) NOT NULL, `CID` int(4) NOT NULL, `Grades` varchar(20) NOT NULL, PRIMARY KEY (`EnrollmentID`));";
+        public const string _CreateTbEnrollment = @"CREATE TABLE `Enrollment` (`EnrollmentID` int(4) NOT NULL AUTO_INCREMENT, `GroupID` int(4) NOT NULL, `InstructorID` int(4) NOT NULL, `CID` int(4) NOT NULL, `EnrollmentDate` DATE NOT NULL, PRIMARY KEY (`EnrollmentID`));";
 
-        public const string _CreateTbGroup = @"CREATE TABLE `Group` (`GroupID` int(4) NOT NULL AUTO_INCREMENT, `GroupName` varchar(50) NOT NULL, `MonthlyFee` DECIMAL(10, 2) NOT NULL, PRIMARY KEY(`GroupID`));";
+        public const string _CreateTbGroup = @"CREATE TABLE `Group` (`GroupID` int(4) NOT NULL AUTO_INCREMENT, `GroupName` varchar(50) NOT NULL, PRIMARY KEY(`GroupID`));";
 
-        public const string _CreateTbInstructor = @"CREATE TABLE `Instructor` (`InstructorID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `StartDate` DATE NOT NULL, `EndDate` DATE, `PayRate` DECIMAL(10,2) NOT NULL, PRIMARY KEY (`InstructorID`));";
+        public const string _CreateTbInstructor = @"CREATE TABLE `Instructor` (`InstructorID` int(4) NOT NULL AUTO_INCREMENT, `FirstName` varchar(50) NOT NULL, `LastName` varchar(50) NOT NULL, `StartDate` DATE NOT NULL, `EndDate` DATE, `PayRate` DECIMAL(10,2) NOT NULL, `EMail` varchar(100) NOT NULL, PRIMARY KEY (`InstructorID`));";
 
         public const string _CreateTbDailyAttendance = @"CREATE TABLE `DailyAttendance` (`AttendanceID` int(4) NOT NULL AUTO_INCREMENT, `Att_Date` DATE NOT NULL, `CID` int(4) NOT NULL, `isPresent` bool NOT NULL, `Notes` varchar(200), PRIMARY KEY (`AttendanceID`));";
+
+        public const string _CreateTbPayments = @"CREATE TABLE `Payments` (`PaymentID` int(4) NOT NULL AUTO_INCREMENT, `CID` int(4) NOT NULL, `Amount` DECIMAL(10,2) NOT NULL, `Date` DATE NOT NULL, `FeeID` int(4) NOT NULL, PRIMARY KEY (`PaymentID`));";
+
+        public const string _CreateTbFeeTypes = @"CREATE TABLE `FeeTypes` (`FeeID` int(4) NOT NULL AUTO_INCREMENT, `FeeType` varchar(50) NOT NULL, PRIMARY KEY (`FeeID`));";
 
         public const string _Add_Enrollment_fk0 = @"ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk0` FOREIGN KEY (`GroupID`) REFERENCES `Group`(`GroupID`);";
 
         public const string _Add_Enrollment_fk1 = @"ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk1` FOREIGN KEY (`InstructorID`) REFERENCES `Instructor`(`InstructorID`);";
 
-        public const string _Add_Enrollment_fk2 = @"ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk2` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);";
+        public const string _Add_Enrollment_fk2 = @"ALTER TABLE `Enrollment` ADD CONSTRAINT `Enrollment_fk2` FOREIGN KEY (`CID`) REFERENCES `Children`(`CID`);";
 
-        public const string _Add_DailyAttendance_fk0 = @"ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`cid`);";
-        
+        public const string _Add_DailyAttendance_fk0 = @"ALTER TABLE `DailyAttendance` ADD CONSTRAINT `DailyAttendance_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`CID`);";
+
+        public const string _Add_Payments_fk0 = @"ALTER TABLE `Payments` ADD CONSTRAINT `Payments_fk0` FOREIGN KEY (`CID`) REFERENCES `Children`(`CID`);";
+
+        public const string _Add_Payments_fk1 = @"ALTER TABLE `Payments` ADD CONSTRAINT `Payments_fk1` FOREIGN KEY (`FeeID`) REFERENCES `FeeTypes`(`FeeID`);";
+
         public static void Seed()
         {
             Kdg_MVC.DataAccessLayer.AppContext ctx = new DataAccessLayer.AppContext();
@@ -35,15 +43,15 @@ namespace Kdg_MVC.MySQLConfig.lib
             {
                 new Children
                 {
-                    FirstName = "Jane", LastName = "Austen", CNP = "2021001125899", Address = "Some Address", City = "Some City", MothersName = "Amanda", FathersName = "John", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017") // Month / Day / Year
+                    FirstName = "Jane", LastName = "Austen", CNP = "2021001125899", Address = "Some Address", City = "Some City", MothersName = "Amanda", FathersName = "John", ContactEmail = "austen@test.com"
                 },
                 new Children
                 {
-                    FirstName = "Mike", LastName = "Jensen", CNP = "1030401138412", Address = "Some Address", City = "Some City", MothersName = "Lucy", FathersName = "Jack", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017")
+                    FirstName = "Mike", LastName = "Jensen", CNP = "1030401138412", Address = "Some Address", City = "Some City", MothersName = "Lucy", FathersName = "Jack", ContactEmail = "austen@test.com"
                 },
                 new Children
                 {
-                    FirstName = "James", LastName = "Cameron", CNP = "1021201152854", Address = "Some Address", City = "Some City", MothersName = "Stacey", FathersName = "Gunther", ContactEmail = "austen@test.com", EnrollmentDate = Convert.ToDateTime("01/01/2017")
+                    FirstName = "James", LastName = "Cameron", CNP = "1021201152854", Address = "Some Address", City = "Some City", MothersName = "Stacey", FathersName = "Gunther", ContactEmail = "austen@test.com"
                 }
             };
 
@@ -53,15 +61,15 @@ namespace Kdg_MVC.MySQLConfig.lib
             {
                 new Instructor
                 {
-                    FirstName = "Mike", LastName="Johnson", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                    FirstName = "Mike", LastName="Johnson", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012"), EMail="staff@test.com"
                 },
                 new Instructor
                 {
-                    FirstName = "Sam", LastName="Smith", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                    FirstName = "Sam", LastName="Smith", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012"), EMail="staff1@test.com"
                 },
                  new Instructor
                 {
-                    FirstName = "Lucy", LastName="Liu", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012")
+                    FirstName = "Lucy", LastName="Liu", PayRate=1200.2M, StartDate=Convert.ToDateTime("12/11/2012"), EMail="staff2@test.com"
                 }
             };
 
@@ -71,19 +79,19 @@ namespace Kdg_MVC.MySQLConfig.lib
             {
                 new Group
                 {
-                    GroupName = "Grupa Mica", MonthlyFee=900M
+                    GroupName = "Grupa Mica"
                 },
                 new Group
                 {
-                    GroupName = "Grupa Mare", MonthlyFee=950M
+                    GroupName = "Grupa Mare"
                 },
                 new Group
                 {
-                    GroupName = "Licuricii", MonthlyFee=925M
+                    GroupName = "Licuricii"
                 },
                 new Group
                 {
-                    GroupName = "Grupa Mijlocie", MonthlyFee=915M
+                    GroupName = "Grupa Mijlocie"
                 }
                
             };
@@ -143,7 +151,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             var admin = new ApplicationUser();
             admin.UserName = "mbenegui@gmail.com";
             admin.Email = "mbenegui@gmail.com";
-            
+
             var adminUser = UserManager.Create(admin, userPWD);
 
             //Add default User to Role Admin   
@@ -156,7 +164,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             var staff = new ApplicationUser();
             staff.UserName = "staff@test.com";
             staff.Email = "staff@test.com";
-            
+
             var staffUser = UserManager.Create(staff, userPWD);
 
             //Add default User to Role Staff   
@@ -191,8 +199,8 @@ namespace Kdg_MVC.MySQLConfig.lib
                 var result1 = UserManager.AddToRole(parent.Id, "Parent");
 
             }
-            
-            
+
+
         }
     }
 }

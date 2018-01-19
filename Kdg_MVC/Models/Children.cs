@@ -45,15 +45,10 @@ namespace Kdg_MVC.Models
         [Required]
         [Display(Name = "Contact E-Mail")]
         public string ContactEmail { get; set; }
-               
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Enrollment Date")]
-        public DateTime EnrollmentDate { get; set; }
-       
+                     
         public virtual ICollection<Enrollment> Enrollments { get; set; }
 
-        [Display(Name = "Full Name")]
+        [Display(Name = "Child's Full Name")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public string FullName
         {

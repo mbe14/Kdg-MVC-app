@@ -11,108 +11,116 @@ using Kdg_MVC.Models;
 
 namespace Kdg_MVC.Controllers
 {
-    [Authorize]
-    public class GroupController : Controller
+    public class PaymentsController : Controller
     {
         private AppContext db = new AppContext();
 
-        // GET: Group
+        // GET: Payments
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            var payments = db.Payments.Include(p => p.Children).Include(p => p.FeeTypes);
+            return View(payments.ToList());
         }
 
-        // GET: Group/Details/5
+        // GET: Payments/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            Payments payments = db.Payments.Find(id);
+            if (payments == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(payments);
         }
 
-        // GET: Group/Create
+        // GET: Payments/Create
         public ActionResult Create()
         {
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName");
+            ViewBag.FeeID = new SelectList(db.FeeTypes, "FeeID", "FeeType");
             return View();
         }
 
-        // POST: Group/Create
+        // POST: Payments/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupID,GroupName")] Group group)
+        public ActionResult Create([Bind(Include = "PaymentID,CID,Amount,FeeID,Date")] Payments payments)
         {
             if (ModelState.IsValid)
             {
-                db.Groups.Add(group);
+                db.Payments.Add(payments);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(group);
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName", payments.CID);
+            ViewBag.FeeID = new SelectList(db.FeeTypes, "FeeID", "FeeType", payments.FeeID);
+            return View(payments);
         }
 
-        // GET: Group/Edit/5
+        // GET: Payments/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            Payments payments = db.Payments.Find(id);
+            if (payments == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            ViewBag.CID = new SelectList(db.Children, "CID", "FullName", payments.CID);
+            ViewBag.FeeID = new SelectList(db.FeeTypes, "FeeID", "FeeType", payments.FeeID);
+            return View(payments);
         }
 
-        // POST: Group/Edit/5
+        // POST: Payments/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupID,GroupName")] Group group)
+        public ActionResult Edit([Bind(Include = "PaymentID,CID,Amount,FeeID,Date")] Payments payments)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
+                db.Entry(payments).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(group);
+            ViewBag.CID = new SelectList(db.Children, "CID", "FirstName", payments.CID);
+            ViewBag.FeeID = new SelectList(db.FeeTypes, "FeeID", "FeeType", payments.FeeID);
+            return View(payments);
         }
 
-        // GET: Group/Delete/5
+        // GET: Payments/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
-            if (group == null)
+            Payments payments = db.Payments.Find(id);
+            if (payments == null)
             {
                 return HttpNotFound();
             }
-            return View(group);
+            return View(payments);
         }
 
-        // POST: Group/Delete/5
+        // POST: Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
+            Payments payments = db.Payments.Find(id);
+            db.Payments.Remove(payments);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

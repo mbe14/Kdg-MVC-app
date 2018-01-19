@@ -36,6 +36,13 @@ namespace Kdg_MVC.Models
         [Display(Name = "Pay Rate")]
         public Decimal PayRate { get; set; }
 
+        [Required]
+        [Column("EMail")]
+        [Display(Name = "E-Mail")]
+        [StringLength(50)]
+        public string EMail { get; set; }
+
+        [Display(Name = "Instructor's Full Name")]
         public string FullName
         {
             get

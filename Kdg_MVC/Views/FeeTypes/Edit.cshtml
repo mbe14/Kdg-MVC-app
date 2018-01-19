@@ -1,4 +1,4 @@
-﻿@model Kdg_MVC.Models.Group
+﻿@model Kdg_MVC.Models.FeeTypes
 
 @{
     ViewBag.Title = "Edit";
@@ -12,18 +12,18 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Group</h4>
+        <h4>FeeTypes</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.GroupID)
+        @Html.HiddenFor(model => model.FeeID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FeeType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FeeType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FeeType, "", new { @class = "text-danger" })
             </div>
-        </div>      
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

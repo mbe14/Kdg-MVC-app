@@ -1,4 +1,4 @@
-﻿@model Kdg_MVC.Models.Enrollment
+﻿@model Kdg_MVC.Models.Payments
 
 @{
     ViewBag.Title = "Delete";
@@ -8,41 +8,41 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Enrollment</h4>
+    <h4>Payments</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Groups.GroupName)
+            @Html.DisplayNameFor(model => model.Children.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Groups.GroupName)
+            @Html.DisplayFor(model => model.Children.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InstructorID)
+            @Html.DisplayNameFor(model => model.FeeTypes.FeeType)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.InstructorID)
+            @Html.DisplayFor(model => model.FeeTypes.FeeType)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CID)
+            @Html.DisplayNameFor(model => model.Amount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CID)
+            @Html.DisplayFor(model => model.Amount)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EnrollmentDate)
+            @Html.DisplayNameFor(model => model.Date)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.EnrollmentDate)
+            @Html.DisplayFor(model => model.Date)
         </dd>
-       
+
     </dl>
 
     @using (Html.BeginForm()) {

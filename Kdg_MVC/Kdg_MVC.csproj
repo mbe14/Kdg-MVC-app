@@ -181,10 +181,12 @@
     <Compile Include="Controllers\ChildrenController.cs" />
     <Compile Include="Controllers\DailyAttendanceController.cs" />
     <Compile Include="Controllers\EnrollmentController.cs" />
+    <Compile Include="Controllers\FeeTypesController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DataAccessLayer\AppContext.cs" />
@@ -195,10 +197,12 @@
     <Compile Include="Models\Children.cs" />
     <Compile Include="Models\DailyAttendance.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\FeeTypes.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Payments.cs" />
     <Compile Include="MySQLConfig\lib\DatabaseRepository.cs" />
     <Compile Include="MySQLConfig\lib\SeedData.cs" />
     <Compile Include="MySQLConfig\MySqlConfiguration.cs" />
@@ -2648,6 +2652,16 @@
     <Content Include="Views\DailyAttendance\Details.cshtml" />
     <Content Include="Views\DailyAttendance\Edit.cshtml" />
     <Content Include="Views\DailyAttendance\Index.cshtml" />
+    <Content Include="Views\FeeTypes\Create.cshtml" />
+    <Content Include="Views\FeeTypes\Delete.cshtml" />
+    <Content Include="Views\FeeTypes\Details.cshtml" />
+    <Content Include="Views\FeeTypes\Edit.cshtml" />
+    <Content Include="Views\FeeTypes\Index.cshtml" />
+    <Content Include="Views\Payments\Create.cshtml" />
+    <Content Include="Views\Payments\Delete.cshtml" />
+    <Content Include="Views\Payments\Details.cshtml" />
+    <Content Include="Views\Payments\Edit.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

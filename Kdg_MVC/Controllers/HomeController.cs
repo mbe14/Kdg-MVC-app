@@ -18,7 +18,7 @@ namespace Kdg_MVC.Controllers
 
         public ActionResult Statistics()
         {
-            IQueryable<EnrollmentDateGroup> data = from child in db.Children
+            IQueryable<EnrollmentDateGroup> data = from child in db.Enrollments
                                                    group child by child.EnrollmentDate into dateGroup
                                                    select new EnrollmentDateGroup()
                                                    {

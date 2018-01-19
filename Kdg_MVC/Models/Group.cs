@@ -10,10 +10,7 @@ namespace Kdg_MVC.Models
 
         [Display(Name = "Group Name")]
         public string GroupName { get; set; }
-
-        [Display(Name = "Monthly Fee")]
-        public Decimal MonthlyFee { get; set; }
-
+      
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }
