@@ -4,30 +4,55 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Fee Types</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new Fee Type", "Create")
 </p>
-<table class="table">
+<table id="feetypes">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FeeType)
+            <strong>@Html.DisplayNameFor(model => model.FeeType)</strong>
         </th>
-        <th></th>
+        <th data-filterable="false"><strong>Actions</strong></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FeeType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FeeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FeeID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeeType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.FeeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.FeeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FeeID })
+            </td>
+        </tr>
+    }
 
 </table>
+<script>
+    $(document).ready(function () {
+        $("#feetypes").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: {
+                extra: false,
+                mode: "row",
+                operators: {
+                    string: { contains: "Contains" }
+                }
+            },
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

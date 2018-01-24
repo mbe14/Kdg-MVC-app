@@ -4,48 +4,73 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Payments List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new Payment", "Create")
 </p>
-<table class="table">
+<table id="payments">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Children.FirstName)
+            <strong>@Html.DisplayNameFor(model => model.Children.FullName)</strong>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FeeTypes.FeeType)
+            <strong>@Html.DisplayNameFor(model => model.FeeTypes.FeeType)</strong>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            <strong>@Html.DisplayNameFor(model => model.Amount)</strong>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            <strong>@Html.DisplayNameFor(model => model.Date)</strong>
         </th>
-        <th></th>
+        <th data-filterable ="false"><strong>Actions</strong></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Children.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FeeTypes.FeeType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PaymentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PaymentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PaymentID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Children.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeeTypes.FeeType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PaymentID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PaymentID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PaymentID })
+            </td>
+        </tr>
+    }
 
 </table>
+<script>
+    $(document).ready(function () {
+        $("#payments").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: {
+                extra: false,
+                mode: "row",
+                operators: {
+                    string: { contains: "Contains" }
+                }
+            },
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

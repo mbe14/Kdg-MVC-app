@@ -37,18 +37,12 @@
 
                 <div class="nav navbar-nav">
 
-                    <div class="floating-box">@Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <div class="floating-box">@Html.ActionLink("Children", "Index", "Children", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                        <div class="floating-box">@Html.ActionLink("Enrollments", "Index", "Enrollment", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                        <div class="floating-box">@Html.ActionLink("Instructors", "Index", "Instructor", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                        <div class="floating-box">@Html.ActionLink("Groups", "Index", "Group", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                        <div class="floating-box">@Html.ActionLink("Statistics", "Statistics", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-                        <div class="floating-box">@Html.ActionLink("Dashboard", "Index", "Users", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn"})</div>
-                    }
+                    <div class="floating-box">@Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>                  
                     <div class="floating-box">@Html.ActionLink("Contact", "Contact", "Home", null, htmlAttributes: new { @class = "btn btn-primary navbar-btn" })</div>
-
+                    @if (Request.IsAuthenticated)
+                    {
+                        <div class="floating-box">@Html.ActionLink("Dashboard", "Index", "Users", null, htmlAttributes: new { @class = "btn btn-danger navbar-btn" })</div>
+                    }
                 </div>
 
                 @Html.Partial("_LoginPartial")
@@ -75,3 +69,7 @@
         display: inline-block;
     }
 </style>
+<script>
+    $('#date').removeAttr("data-val-date");
+    document.getElementById("date").value = new Date().toJSON().slice(0, 10);
+</script>

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
@@ -7,20 +6,110 @@
 
 @if (ViewBag.displayMenu == "Admin")
 {
-    <h2>Welcome Admin. This is the main dashboard.</h2>
-    <h3>
-        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
-        <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
-        <li>@Html.ActionLink("Add new super user", "Register", "Account")</li>
-    </h3>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome Admin</h1>
+            <p>
+                This is your main dashboard.
+                You can start exploring now..
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Managing Tools</h2>
+            <p>
+                Manage Roles allows for the customization of the types of users, Fee Types and other general management options.
+            </p>
+            <li>@Html.ActionLink("Manage Roles", "Index", "Role")</li>
+            <li>@Html.ActionLink("Add new super user", "Register", "Account")</li>
+            <li>@Html.ActionLink("Add new Fee Type", "Index", "FeeTypes")</li>
+            <li>@Html.ActionLink("Add / Edit Groups", "Index", "Group")</li>
+        </div>
+        <div class="col-md-4">
+            <h2>Staff Tools</h2>
+            <p>
+                Staff tools allows for entered data to be allocated. Ex. Allocate Children in Groups and fill Daily Attendance.
+            </p>
+            <li>@Html.ActionLink("Enrollments", "Index", "Enrollment")</li>
+            <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
+            <li>@Html.ActionLink("Register Payments", "Index", "Payments")</li>
+        </div>
+        <div class="col-md-4">
+            <h2>Parent Tools</h2>
+            <p>
+                Parents tool dashboard items will go here..
+            </p>
+            <p>Parents will see Payments Details and Daily Attendance statistics.</p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Reporting Tools</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
+            </p>
+            <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
+            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+        </div>
+        <div class="col-md-4">
+            <h2>Basic Data Entry</h2>
+            <p>
+                Maecenas pretium bibendum feugiat. Curabitur vitae lorem sed libero venenatis fermentum. Suspendisse potenti. Nulla vestibulum porta velit in scelerisque. Aliquam erat volutpat. Aliquam accumsan tellus sit amet volutpat porttitor. Duis ac metus at quam iaculis viverra eu sit amet nulla.
+            </p>
+            <li>@Html.ActionLink("Children", "Index", "Children")</li>
+            <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
+        </div>
+    </div>
 }
 
 else if (ViewBag.displayMenu == "Staff")
 {
-    <h2>Welcome Staff. This is the main dashboard.</h2>
-    <h3>
-        <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
-    </h3>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome</h1>
+            <p>
+                This is your main dashboard.
+                You can start exploring now..
+            </p>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Basic Data Entry</h2>
+            <p>
+                Maecenas pretium bibendum feugiat. Curabitur vitae lorem sed libero venenatis fermentum. Suspendisse potenti. Nulla vestibulum porta velit in scelerisque. Aliquam erat volutpat. Aliquam accumsan tellus sit amet volutpat porttitor. Duis ac metus at quam iaculis viverra eu sit amet nulla.
+            </p>
+            <li>@Html.ActionLink("Children", "Index", "Children")</li>
+            <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
+        </div>
+        <div class="col-md-4">
+            <h2>Staff Tools</h2>
+            <p>
+                Staff tools allows for entered data to be allocated. Ex. Allocate Children in Groups and fill Daily Attendance.
+            </p>
+            <li>@Html.ActionLink("Enrollments", "Index", "Enrollment")</li>
+            <li>@Html.ActionLink("Daily Attendance", "Index", "DailyAttendance")</li>
+            <li>@Html.ActionLink("Register Payments", "Index", "Payments")</li>
+        </div>
+        <div class="col-md-4">
+            <h2>Reporting Tools</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
+            </p>
+            <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
+            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+        </div>
+    </div>
+    
+    
+
 }
 
 else if (ViewBag.displayMenu == "Manager")

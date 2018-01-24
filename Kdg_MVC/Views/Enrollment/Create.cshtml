@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EnrollmentDate, "Enrollment Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control date-picker", @id="date"" } })
+                @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control date-picker", @id = "date" } })
                 @Html.ValidationMessageFor(model => model.EnrollmentDate, "", new { @class = "text-danger" })
             </div>
         </div>       
@@ -63,7 +63,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-<script>
-    $('#date').removeAttr("data-val-date");
-    document.getElementById("date").value = new Date().toJSON().slice(0, 10);
-</script>
