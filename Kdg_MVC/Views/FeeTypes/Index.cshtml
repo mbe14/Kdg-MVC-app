@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Add new Fee Type", "Create")
 </p>
-<table id="feetypes">
+<table id="table">
     <tr>
         <th>
             <strong>@Html.DisplayNameFor(model => model.FeeType)</strong>
@@ -34,7 +34,7 @@
 </table>
 <script>
     $(document).ready(function () {
-        $("#feetypes").kendoGrid({
+        $("#table").kendoGrid({
             dataSource: {
                 pageSize: 20
             },

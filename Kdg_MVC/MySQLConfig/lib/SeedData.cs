@@ -43,15 +43,63 @@ namespace Kdg_MVC.MySQLConfig.lib
             {
                 new Children
                 {
-                    FirstName = "Jane", LastName = "Austen", CNP = "2021001125899", Address = "Some Address", City = "Some City", MothersName = "Amanda", FathersName = "John", ContactEmail = "austen@test.com"
+                    FirstName = "Jane", LastName = "Austen", CNP = "2021001125899", Address = "591 Myers Lane", City = "Roseville", MothersName = "Amanda", FathersName = "Mario", ContactEmail = "austen@test.com"
                 },
                 new Children
                 {
-                    FirstName = "Mike", LastName = "Jensen", CNP = "1030401138412", Address = "Some Address", City = "Some City", MothersName = "Lucy", FathersName = "Jack", ContactEmail = "austen@test.com"
+                    FirstName = "Mike", LastName = "Jensen", CNP = "1150727108484", Address = "730 Pawnee Street", City = "Englewood", MothersName = "Lucy", FathersName = "Elvis", ContactEmail = "nacho@icloud.com"
                 },
                 new Children
                 {
-                    FirstName = "James", LastName = "Cameron", CNP = "1021201152854", Address = "Some Address", City = "Some City", MothersName = "Stacey", FathersName = "Gunther", ContactEmail = "austen@test.com"
+                    FirstName = "Jonathan", LastName = "Davis", CNP = "1160107158902", Address = "8436 West Greenview Ave.", City = "Jackson Heights", MothersName = "Haylie", FathersName = "Devin", ContactEmail = "graham@live.com"
+                },
+                new Children
+                {
+                    FirstName = "Harry", LastName = "Brown", CNP = "1150715167679", Address = "8436 West Greenview Ave.", City = "Jackson Heights", MothersName = "Janiya", FathersName = "Brooks", ContactEmail = "mddallara@mac.com"
+                },
+                new Children
+                {
+                    FirstName = "Juan", LastName = "Butler", CNP = "1150718140827", Address = "8436 West Greenview Ave.", City = "Jackson Heights", MothersName = "Elisa", FathersName = "Drew", ContactEmail = "wikinerd@optonline.net"
+                },
+                new Children
+                {
+                    FirstName = "Carolyn", LastName = "Mitchell", CNP = "2150716177951", Address = "692 Yukon Ave.", City = "Brunswick", MothersName = "Makenzie", FathersName = "Frank", ContactEmail = "durist@optonline.net"
+                },
+                new Children
+                {
+                    FirstName = "Thomas", LastName = "Perez", CNP = "1150510178127", Address = "9259 Coffee Circle", City = "Brunswick", MothersName = "Tia", FathersName = "Dario", ContactEmail = "aracne@yahoo.com"
+                },
+                new Children
+                {
+                    FirstName = "Pamela", LastName = "Lopez", CNP = "215093056670", Address = "579 Ocean Rd.", City = "Brunswick", MothersName = "Kaya", FathersName = "Easton", ContactEmail = "sabren@yahoo.com"
+                },
+                new Children
+                {
+                    FirstName = "Laura", LastName = "Carter", CNP = "2160923185545", Address = "7568 Fulton Lane", City = "Brunswick", MothersName = "Brynn", FathersName = "Dexter", ContactEmail = "arnold@icloud.com"
+                },
+                new Children
+                {
+                    FirstName = "Ralph", LastName = "Rodriguez", CNP = "115062152942", Address = "427 Hill Street", City = "Deer Park", MothersName = "Erin", FathersName = "Bradley", ContactEmail = "reeds@msn.com"
+                },
+                new Children
+                {
+                    FirstName = "Sean", LastName = "Garcia", CNP = "115022514636", Address = "834 Bay Street", City = "Deer Park", MothersName = "Natalya", FathersName = "Jayden", ContactEmail = "hamilton@optonline.net"
+                },
+                new Children
+                {
+                    FirstName = "Dorian", LastName = "Robinson", CNP = "1150916118807", Address = "253 4th St.", City = "Deer Park", MothersName = "Sienna", FathersName = "Jack", ContactEmail = "scottzed@comcast.net"
+                },
+                new Children
+                {
+                    FirstName = "Eugene", LastName = "Clark", CNP = "1150422115603", Address = "707 East Berkshire St.", City = "Deer Park", MothersName = "Josephine", FathersName = "Dax", ContactEmail = "yenya@verizon.net"
+                },
+                new Children
+                {
+                    FirstName = "Anna  ", LastName = "Parker", CNP = "216052157989", Address = "162 N. Fulton Dr.", City = "Deer Park", MothersName = "Lucy", FathersName = "Trey", ContactEmail = "ranasta@sbcglobal.net"
+                },
+                new Children
+                {
+                    FirstName = "Ralph", LastName = "Moore", CNP = "1150310171284", Address = "54 Essex Ave.", City = "Deer Park", MothersName = "Carly", FathersName = "Gunther", ContactEmail = "ninenine@live.com"
                 }
             };
 

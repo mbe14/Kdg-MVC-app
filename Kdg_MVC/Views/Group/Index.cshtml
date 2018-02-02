@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Add new Group", "Create")
 </p>
-<table id="groups">
+<table id="table">
     <tr>
         <th>
             <strong>@Html.DisplayNameFor(model => model.GroupName)</strong>
@@ -33,10 +33,9 @@
     }
 
 </table>
-
 <script>
     $(document).ready(function () {
-        $("#groups").kendoGrid({
+        $("#table").kendoGrid({
             dataSource: {
                 pageSize: 20
             },
