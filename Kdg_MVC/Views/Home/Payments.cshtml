@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Kdg_MVC.ViewModels.PaymentsList>
+@{
+    ViewBag.Title = "Payments";
+}
+
+<h2>Payments received</h2>
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.FullName)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Amount)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Date)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.FeeType)</strong>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeeType)
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    $(document).ready(function () {
+        $("#table").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: false,
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

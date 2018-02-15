@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Kdg_MVC.ViewModels.AttendanceList>
+@{
+    ViewBag.Title = "Attendance";    
+}
+
+<h2>Attendance sheet</h2>
+<p>Testing for something here, and here: @ViewBag.DaysYes and some other value @ViewBag.DaysNo and that's it for today. </p>
+<table id="table">
+    <thead>
+        <tr>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.FullName)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Date)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.isPresent)</strong>
+            </th>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.Notes)</strong>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPresent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+        </tr>
+    }
+</table>
+<script>
+    $(document).ready(function () {
+        $("#table").kendoGrid({
+            dataSource: {
+                pageSize: 20
+            },
+            filterable: false,
+            height: 550,
+            groupable: true,
+            sortable: true,
+            pageable: {
+                refresh: true,
+                pageSizes: true,
+                buttonCount: 5
+            },
+        });
+    });
+</script>

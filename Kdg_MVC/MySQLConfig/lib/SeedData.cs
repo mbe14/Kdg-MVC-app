@@ -146,6 +146,103 @@ namespace Kdg_MVC.MySQLConfig.lib
 
             grps.ForEach(s => ctx.Groups.Add(s));
 
+            var fees = new List<FeeTypes>
+            {
+                new FeeTypes
+                {
+                    FeeType = "Taxa Lunara"
+                },
+                new FeeTypes
+                {
+                    FeeType = "Taxa gradinita"
+                },
+                new FeeTypes
+                {
+                    FeeType = "Taxa masa"
+                }
+            };
+
+            fees.ForEach(s => ctx.FeeTypes.Add(s));
+
+            var payments = new List<Payments>
+            {
+                new Payments
+                {
+                    CID = 1,
+                    Amount = 800,
+                    FeeID = 1,
+                    Date = Convert.ToDateTime("12/11/2017")
+                },
+
+                new Payments
+                {
+                    CID = 1,
+                    Amount = 800,
+                    FeeID = 1,
+                    Date = Convert.ToDateTime("06/11/2017")
+                },
+
+                new Payments
+                {
+                    CID = 1,
+                    Amount = 800,
+                    FeeID = 1,
+                    Date = Convert.ToDateTime("12/01/2017")
+                },
+
+                new Payments
+                {
+                    CID = 1,
+                    Amount = 800,
+                    FeeID = 1,
+                    Date = Convert.ToDateTime("01/01/2018")
+                }
+            };
+
+            payments.ForEach(s => ctx.Payments.Add(s));
+
+            //Date IS MM/DD/YYYY
+            var da = new List<DailyAttendance>
+            {
+                new DailyAttendance
+                {
+                    CID = 1,
+                    Att_Date = Convert.ToDateTime("01/01/2018"),
+                    isPresent = true,
+                    Notes = "All good"
+                },
+            new DailyAttendance
+                {
+                    CID = 1,
+                    Att_Date = Convert.ToDateTime("01/02/2018"),
+                    isPresent = true,
+                    Notes = "All good"
+                },
+            new DailyAttendance
+                {
+                    CID = 1,
+                    Att_Date = Convert.ToDateTime("01/03/2018"),
+                    isPresent = true,
+                    Notes = "All good"
+                },
+            new DailyAttendance
+                {
+                    CID = 1,
+                    Att_Date = Convert.ToDateTime("01/04/2018"),
+                    isPresent = true,
+                    Notes = "All good"
+                },
+            new DailyAttendance
+                {
+                    CID = 1,
+                    Att_Date = Convert.ToDateTime("01/05/2018"),
+                    isPresent = false,
+                    Notes = "Sick"
+                }
+                
+        };
+            da.ForEach(s => ctx.DailyAttendances.Add(s));
+
             ctx.SaveChanges();
         }
 
@@ -236,8 +333,8 @@ namespace Kdg_MVC.MySQLConfig.lib
             }
 
             var parent = new ApplicationUser();
-            parent.UserName = "parent@test.com";
-            parent.Email = "parent@test.com";
+            parent.UserName = "austen@test.com";
+            parent.Email = "austen@test.com";
 
             var parentUser = UserManager.Create(parent, userPWD);
 

@@ -51,6 +51,7 @@
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
             </p>
             <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
             <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
             <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
         </div>
@@ -101,13 +102,12 @@ else if (ViewBag.displayMenu == "Staff")
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
             </p>
             <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
             <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
             <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
         </div>
     </div>
     
-    
-
 }
 
 else if (ViewBag.displayMenu == "Manager")
@@ -120,10 +120,32 @@ else if (ViewBag.displayMenu == "Manager")
 }
 
 else if (ViewBag.displayMenu == "Parent")
-{
-    <h2>Welcome Parent. This is the main dashboard.</h2>
+{  
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome</h1>
+            <p>
+                This is your main dashboard.
+                You can start exploring now..
+            </p>
+        </div>
+
+    </div>
+    <div class="row">      
+        <div class="col-md-4">
+            <h2>Reporting Tools</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
+            </p>
+            <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
+            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>
+            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
+            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+        </div>
+    </div>
 }
 else
 {
-    <h2>  Welcome <strong>@ViewBag.Name</strong>. This is the main dashboard.</h2>
+    <h2>Welcome! <strong>@ViewBag.Name</strong>This is the main dashboard. Not implemented yet!</h2>
 }
