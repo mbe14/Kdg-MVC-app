@@ -12,8 +12,8 @@ namespace Kdg_MVC.Controllers
     {
         private AppContext db = new AppContext();
         public ActionResult Index()
-        {
-            return View();
+        {        
+                return View();                                
         }
 
         public ActionResult Statistics()
@@ -26,6 +26,38 @@ namespace Kdg_MVC.Controllers
                                                        ChildrenCount = dateGroup.Count()
                                                    };
             return View(data.ToList());
+        }
+
+        public ActionResult EnrollmentData()
+        {
+            if (Request.IsAuthenticated && User.IsInRole("Parent"))
+            {
+                var data = from a in db.Enrollments
+                           join c in db.Children on a.CID equals c.CID
+                           join g in db.Groups on a.GroupID equals g.GroupID
+                           where c.ContactEmail == User.Identity.Name
+                           select new EnrollmentData
+                           {
+                               FullName = c.FirstName + " " + c.LastName,
+                               Date = a.EnrollmentDate,
+                               GroupName = g.GroupName
+                           };
+
+                ViewBag.FullName = (from item in data
+                                    select item.FullName).FirstOrDefault();
+                ViewBag.Date = (from item in data
+                                select item.Date).FirstOrDefault().ToShortDateString();
+
+                ViewBag.GroupName = (from item in data
+                                     select item.GroupName).FirstOrDefault().ToString();
+
+                return View(data.ToList());
+            }
+
+            else
+            {
+                return View();
+            }
         }
 
         public ActionResult Payments()
@@ -53,32 +85,59 @@ namespace Kdg_MVC.Controllers
         }
 
         public ActionResult Attendance()
-        {                       
-            var data = from a in db.DailyAttendances
-                       join c in db.Children on a.CID equals c.CID
-                       where c.ContactEmail == User.Identity.Name
-                       select new AttendanceList
-                       {
-                           FullName = c.FirstName + " " + c.LastName,
-                           Date = a.Att_Date,
-                           isPresent = a.isPresent == true ? "Yes" : "No",
-                           Notes = a.Notes                         
-                       };
-            int DaysYes = data.Count(a => a.isPresent == "Yes");
-            int DaysNo = data.Count(a => a.isPresent == "No");
-
-            ViewBag.DaysYes = DaysYes;
-            ViewBag.DaysNo = DaysNo;
-           
-            if (User.Identity.IsAuthenticated)
+        {            
+            if (User.IsInRole("Admin"))
             {
-                return View(data.ToList());
+               var data = from a in db.DailyAttendances
+                           join c in db.Children on a.CID equals c.CID                           
+                           select new AttendanceList
+                           {
+                               FullName = c.FirstName + " " + c.LastName,
+                               Date = a.Att_Date,
+                               isPresent = a.isPresent == true ? "Yes" : "No",
+                               Notes = a.Notes
+                           };
+               if (User.Identity.IsAuthenticated)
+               {
+                   return View(data.ToList());
+               }
+
+               else
+               {
+                   return new HttpUnauthorizedResult("Unauthorized");
+               }
             }
 
             else
             {
-                return new HttpUnauthorizedResult("Unauthorized");
-            }
+               var data = from a in db.DailyAttendances
+                           join c in db.Children on a.CID equals c.CID
+                           where c.ContactEmail == User.Identity.Name
+                           select new AttendanceList
+                           {
+                               FullName = c.FirstName + " " + c.LastName,
+                               Date = a.Att_Date,
+                               isPresent = a.isPresent == true ? "Yes" : "No",
+                               Notes = a.Notes
+                           };
+               int DaysYes = data.Count(a => a.isPresent == "Yes");
+               int DaysNo = data.Count(a => a.isPresent == "No");
+               string FullName = data.Select(d => d.FullName).FirstOrDefault();
+
+               ViewBag.FullName = FullName;
+               ViewBag.DaysYes = DaysYes;
+               ViewBag.DaysNo = DaysNo;
+
+               if (User.Identity.IsAuthenticated)
+               {
+                   return View(data.ToList());
+               }
+
+               else
+               {
+                   return new HttpUnauthorizedResult("Unauthorized");
+               }
+            }                                             
         }
 
         public ActionResult Contact()

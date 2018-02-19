@@ -3,31 +3,47 @@
     ViewBag.Title = "Attendance";    
 }
 
-<h2>Attendance sheet</h2>
-<p>Testing for something here, and here: @ViewBag.DaysYes and some other value @ViewBag.DaysNo and that's it for today. </p>
+@if (Request.IsAuthenticated && User.IsInRole("Parent"))
+{
+    <h2>Overall attendance sheet for @ViewBag.FullName</h2>
+    <p>Small data set</p>
+    <p>@ViewBag.FullName was accounted for @ViewBag.DaysYes days and  skipped @ViewBag.DaysNo days. </p>
+}
+
+else
+{
+    <h2>Small data set only visible from "Parent" type account! </h2>
+}
+
 <table id="table">
     <thead>
-        <tr>
-            <th>
-                <strong>@Html.DisplayNameFor(model => model.FullName)</strong>
-            </th>
-            <th>
+        <tr> 
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <th data-filterable="true">
+                    <strong>@Html.DisplayNameFor(model => model.FullName)</strong>
+                </th>
+            }                                          
+            <th data-filterable="false">
                 <strong>@Html.DisplayNameFor(model => model.Date)</strong>
             </th>
-            <th>
+            <th data-filterable="false">
                 <strong>@Html.DisplayNameFor(model => model.isPresent)</strong>
             </th>
-            <th>
+            <th data-filterable="false">
                 <strong>@Html.DisplayNameFor(model => model.Notes)</strong>
             </th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
+        <tr>            
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+            }            
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
@@ -45,8 +61,14 @@
         $("#table").kendoGrid({
             dataSource: {
                 pageSize: 20
+            },            
+            filterable: {
+                extra: false,
+                mode: "row",
+                operators: {
+                    string: { contains: "Contains" }
+                }
             },
-            filterable: false,
             height: 550,
             groupable: true,
             sortable: true,

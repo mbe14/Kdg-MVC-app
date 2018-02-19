@@ -39,7 +39,9 @@
             <p>
                 Parents tool dashboard items will go here..
             </p>
-            <p>Parents will see Payments Details and Daily Attendance statistics.</p>
+            <li>@Html.ActionLink("Welcome!", "EnrollmentData", "Home")</li>
+            <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
+            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>
 
         </div>
     </div>
@@ -52,8 +54,7 @@
             </p>
             <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
             <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
-            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
-            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>            
         </div>
         <div class="col-md-4">
             <h2>Basic Data Entry</h2>
@@ -103,8 +104,7 @@ else if (ViewBag.displayMenu == "Staff")
             </p>
             <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
             <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
-            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
-            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>
         </div>
     </div>
     
@@ -130,18 +130,16 @@ else if (ViewBag.displayMenu == "Parent")
             </p>
         </div>
 
-    </div>
+    </div>    
     <div class="row">      
         <div class="col-md-4">
             <h2>Reporting Tools</h2>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sapien nunc, sollicitudin vehicula ipsum sit amet, euismod congue nisi.
             </p>
-            <li>@Html.ActionLink("Statistics", "Statistics", "Home")</li>
+            <li>@Html.ActionLink("Welcome!", "EnrollmentData", "Home")</li>
             <li>@Html.ActionLink("Payments", "Payments", "Home")</li>
-            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>
-            <li>@Html.ActionLink("Reporting Tool 2", "Register", "Account")</li>
-            <li>@Html.ActionLink("Reporting Tool 3", "Index", "FeeTypes")</li>
+            <li>@Html.ActionLink("Attendance", "Attendance", "Home")</li>            
         </div>
     </div>
 }

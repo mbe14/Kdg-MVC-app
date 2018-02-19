@@ -211,6 +211,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AttendanceList.cs" />
+    <Compile Include="ViewModels\EnrollmentData.cs" />
     <Compile Include="ViewModels\EnrollmentDateGroup.cs" />
     <Compile Include="ViewModels\PaymentsList.cs" />
   </ItemGroup>
@@ -2667,6 +2668,7 @@
     <Content Include="Views\Payments\Index.cshtml" />
     <Content Include="Views\Home\Payments.cshtml" />
     <Content Include="Views\Home\Attendance.cshtml" />
+    <Content Include="Views\Home\EnrollmentData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

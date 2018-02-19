@@ -20,7 +20,6 @@ namespace Kdg_MVC.Controllers
         public ActionResult Index()
         {                       
             var da = db.DailyAttendances.Include(c => c.Children);
-
             return View(da.ToList());
                                     
         }
