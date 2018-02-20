@@ -640,6 +640,8 @@
     <Content Include="Content\kendo\kendo.uniform.mobile.min.css.map" />
     <Content Include="Lucrarea\coperta.doc" />
     <Content Include="Lucrarea\Doc1.docx" />
+    <Content Include="Lucrarea\coperta.pdf" />
+    <Content Include="Lucrarea\Doc1.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

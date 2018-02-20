@@ -72,7 +72,10 @@ namespace Kdg_MVC.Controllers
                             Date = p.Date,
                             FeeType = f.FeeType
                        };
-
+            string FullName = data.Select(d => d.FullName).FirstOrDefault();
+            decimal amt = Convert.ToDecimal(data.Sum(d => d.Amount));
+            ViewBag.FullName = FullName;
+            ViewBag.Amount = amt;
             if (User.Identity.IsAuthenticated)
             {
                 return View(data.ToList());

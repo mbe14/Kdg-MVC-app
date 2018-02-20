@@ -104,6 +104,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             };
 
             chldren.ForEach(s => ctx.Children.Add(s));
+            ctx.SaveChanges();
 
             var instrcts = new List<Instructor>
             {
@@ -122,6 +123,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             };
 
             instrcts.ForEach(s => ctx.Instructors.Add(s));
+            ctx.SaveChanges();
 
             var grps = new List<Group>
             {
@@ -145,6 +147,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             };
 
             grps.ForEach(s => ctx.Groups.Add(s));
+            ctx.SaveChanges();
 
             var fees = new List<FeeTypes>
             {
@@ -163,6 +166,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             };
 
             fees.ForEach(s => ctx.FeeTypes.Add(s));
+            ctx.SaveChanges();
 
             var payments = new List<Payments>
             {
@@ -200,6 +204,7 @@ namespace Kdg_MVC.MySQLConfig.lib
             };
 
             payments.ForEach(s => ctx.Payments.Add(s));
+            ctx.SaveChanges();
 
             //Date IS MM/DD/YYYY
             var da = new List<DailyAttendance>
@@ -242,7 +247,43 @@ namespace Kdg_MVC.MySQLConfig.lib
                 
         };
             da.ForEach(s => ctx.DailyAttendances.Add(s));
+            ctx.SaveChanges();
 
+            var erls = new List<Enrollment>
+            {
+                new Enrollment
+                {
+                    InstructorID = 1,
+                    GroupID = 1,
+                    CID = 1,                                  
+                    EnrollmentDate = Convert.ToDateTime("01/05/2018")                  
+                },
+
+                new Enrollment
+                {
+                    InstructorID = 1,
+                    GroupID = 1,
+                    CID = 2,                                  
+                    EnrollmentDate = Convert.ToDateTime("01/05/2018")                  
+                },
+
+                new Enrollment
+                {
+                    InstructorID = 1,
+                    GroupID = 1,
+                    CID = 3,                                  
+                    EnrollmentDate = Convert.ToDateTime("01/05/2018")                  
+                },
+
+                new Enrollment
+                {
+                    InstructorID = 1,
+                    GroupID = 2,
+                    CID = 4,                                  
+                    EnrollmentDate = Convert.ToDateTime("01/05/2018")                  
+                }
+            };
+            erls.ForEach(e => ctx.Enrollments.Add(e));
             ctx.SaveChanges();
         }
 

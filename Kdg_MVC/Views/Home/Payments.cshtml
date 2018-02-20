@@ -3,14 +3,20 @@
     ViewBag.Title = "Payments";
 }
 
-<h2>Payments received</h2>
+@if (Request.IsAuthenticated && User.IsInRole("Parent"))
+{
+    <h2>Overall payments sheet for @ViewBag.FullName</h2>
+    <p>Total amount paid: @ViewBag.Amount</p>
+}
+
+else
+{
+    <h2>Small data set only visible from "Parent" type account! </h2>
+}
 
 <table id="table">
     <thead>
         <tr>
-            <th>
-                <strong>@Html.DisplayNameFor(model => model.FullName)</strong>
-            </th>
             <th>
                 <strong>@Html.DisplayNameFor(model => model.Amount)</strong>
             </th>
@@ -24,10 +30,7 @@
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
+        <tr>           
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
